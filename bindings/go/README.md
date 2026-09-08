@@ -10,9 +10,11 @@ With Go 1.26 or newer, add the binding to your project:
 go get github.com/microsoft/tui-test/bindings/go
 ```
 
-For an unpublished source checkout, build the native library and set `TUI_TEST_GO_NATIVE_LIBRARY` to its path before running the Go application. See [building and maintaining the Go binding](CONTRIBUTING.md). The source-built binding supports Windows, macOS, Linux, FreeBSD, and NetBSD on architectures supported by purego and the Rust engine.
+Published Go modules include the Rust engine. You do not need the CLI, Rust, a C compiler, or native library configuration. The binding supports Windows amd64, macOS amd64 and arm64, and Linux amd64 and arm64 with glibc or musl.
 
-The binding loads the configured engine automatically on first use and keeps it loaded for the process lifetime. It does not download anything at runtime.
+For an unpublished source checkout, build the native library and set `TUI_TEST_GO_NATIVE_LIBRARY` to its path before running the Go application. See [building and maintaining the Go binding](CONTRIBUTING.md).
+
+The engine is embedded in your application and loaded automatically on first use. Loading requires a writable user cache directory where the operating system permits loading native libraries. The binding stores verified engine files under `tui-test/native` in the directory returned by Go's `os.UserCacheDir`. It does not download anything at runtime.
 
 ## Quick start
 
@@ -66,7 +68,7 @@ Clients with the same name share the same in-process session. `Close` closes tha
 
 `ClientOptions` sets the backend, profile, timeouts, automatic recording, and assertion artifacts. `SpawnOptions` controls dimensions, working directory, environment, readiness, restart, retries, and per-launch overrides. `OpenOptions` embeds `SpawnOptions` and adds `Shell`.
 
-The default backend is Alacritty. The native adapter also enables Ghostty, Rio, and xterm.js. The default size is 80 columns by 30 rows. Automatic recording defaults to `RecordingAlways`; use `RecordingDisabled` or `RecordingOnFailure` to change it.
+The default backend is Alacritty. The native release also includes Ghostty, Rio, and xterm.js. The default size is 80 columns by 30 rows. Automatic recording defaults to `RecordingAlways`; use `RecordingDisabled` or `RecordingOnFailure` to change it.
 
 Optional pointer fields distinguish omission from an explicit value. For example:
 
@@ -146,4 +148,4 @@ Import `testing`, `github.com/microsoft/tui-test/bindings/go`, and `github.com/m
 
 ## Contributing
 
-See [building and testing the Go binding](CONTRIBUTING.md).
+See [building, testing, and releasing the Go binding](CONTRIBUTING.md).

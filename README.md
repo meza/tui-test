@@ -58,7 +58,7 @@ Add the Rust `recording-raster` feature for APNG, GIF, and MP4 output. It uses i
 
 ## Quick start
 
-The CLI and libraries expose the same terminal actions. Python, JavaScript, Rust, and Go sessions run in-process and do not require the CLI. See [Go installation](bindings/go/README.md#install) for the Go binding's native build requirement.
+The CLI and libraries expose the same terminal actions. Python, JavaScript, Rust, and Go sessions run in-process and do not require the CLI. Published Go modules bundle the native engine and load it automatically; see [Go installation](bindings/go/README.md#install).
 
 ### CLI
 
